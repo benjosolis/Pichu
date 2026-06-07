@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Benjo Solis | Portfolio</title>
+
+  <style>
+    :root {
+      --dark-gray: #242424;
+      --red: #6b1d1d;
+      --white: #ffffff;
+      --glass-border: rgba(255, 255, 255, 0.45);
+      --shadow: rgba(0, 0, 0, 0.18);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(107, 29, 29, 0.35), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(80, 80, 80, 0.35), transparent 35%),
+        linear-gradient(135deg, #eeeeee, #bfbfbf);
+      color: var(--dark-gray);
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 22px 8%;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      border-bottom: 1px solid var(--glass-border);
+      box-shadow: 0 8px 25px var(--shadow);
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--red);
+    }
+
+    nav a {
+      margin-left: 30px;
+      text-decoration: none;
+      color: var(--dark-gray);
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      color: var(--red);
+    }
+
+    section {
+      padding: 120px 8% 80px;
+      min-height: 100vh;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.9fr;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 6vw, 78px);
+      color: var(--red);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero h3 {
+      font-size: 24px;
+      margin-bottom: 25px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      max-width: 650px;
+      line-height: 1.7;
+    }
+
+    .buttons {
+      margin-top: 35px;
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .buttons a {
+      padding: 14px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 700;
+      border: 1px solid rgba(107, 29, 29, 0.45);
+      color: var(--red);
+      background: rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(12px);
+      transition: 0.3s;
+    }
+
+    .buttons a:first-child,
+    .buttons a:hover {
+      background: var(--red);
+      color: var(--white);
+    }
+
+    .profile-card,
+    .work-card,
+    .about-text,
+    .skill-box,
+    .contact-box {
+      background: rgba(255, 255, 255, 0.28);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 15px 35px var(--shadow);
+    }
+
+    .profile-card {
+      padding: 25px;
+      border-radius: 30px;
+      text-align: center;
+    }
+
+    .profile-card img {
+      width: 100%;
+      max-width: 380px;
+      border-radius: 25px;
+    }
+
+    .profile-card h2 {
+      margin-top: 20px;
+      color: var(--red);
+    }
+
+    .tags {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .tags span {
+      background: rgba(107, 29, 29, 0.85);
+      color: var(--white);
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 15px;
+    }
+
+    .section-title {
+      font-size: 44px;
+      color: var(--red);
+      margin-bottom: 50px;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+    }
+
+    .work-card {
+      border-radius: 25px;
+      overflow: hidden;
+      transition: 0.3s;
+    }
+
+    .work-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .work-card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+
+    .work-card h3 {
+      padding: 22px;
+      color: var(--red);
+      font-size: 20px;
+    }
+
+    .about-text {
+      padding: 35px;
+      border-left: 7px solid var(--red);
+      border-radius: 20px;
+      font-size: 20px;
+      line-height: 1.8;
+      margin-bottom: 50px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .skill-box {
+      padding: 30px;
+      border-radius: 25px;
+    }
+
+    .skill-box h3 {
+      color: var(--red);
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+
+    .skill-box ul {
+      padding-left: 22px;
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    .contact {
+      text-align: center;
+    }
+
+    .contact-box {
+      max-width: 700px;
+      margin: auto;
+      padding: 45px;
+      border-radius: 30px;
+      font-size: 21px;
+      font-weight: 700;
+    }
+
+    .contact-box p {
+      margin: 22px 0;
+    }
+
+    .contact-box a {
+      color: var(--red);
+      word-break: break-word;
+    }
+
+    footer {
+      background: rgba(107, 29, 29, 0.9);
+      color: var(--white);
+      text-align: center;
+      padding: 25px;
+    }
+.work-categories {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.filter-btn {
+  padding: 12px 24px;
+  border: 1px solid rgba(107, 29, 29, 0.45);
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(12px);
+  color: var(--dark-gray);
+  transition: 0.3s;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--red);
+  color: var(--white);
+}
+
+.work-card {
+  cursor: pointer;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 3000;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  padding: 40px 8%;
+  overflow-y: auto;
+}
+
+.modal-content {
+  max-width: 1100px;
+  margin: auto;
+  padding: 35px;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+  overflow: visible;
+}
+.modal-gallery {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.modal-gallery img {
+  max-width: 65%;
+  max-height: 45vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: auto;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+}
+.project-gallery img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 18px;
+    transition: 0.3s;
+}
+
+.project-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.logo-gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.logo-gallery img {
+    width: 350px;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 20px;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.modal-description {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+.close {
+  float: right;
+  font-size: 35px;
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--red);
+}
+
+.modal-content h2 {
+  color: var(--red);
+  margin-bottom: 20px;
+}
+
+.modal-content p {
+  font-size: 18px;
+  line-height: 1.7;
+  margin-bottom: 25px;
+}
+
+    @media (max-width: 1000px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero p {
+        margin: auto;
+      }
+
+      .buttons {
+        justify-content: center;
+      }
+
+      .work-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      nav a {
+        margin: 0 10px;
+        font-size: 15px;
+      }
+
+      section {
+        padding: 130px 6% 70px;
+      }
+
+      .work-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .hero p,
+      .about-text,
+      .contact-box {
+        font-size: 17px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">Benjo Solis</div>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <div>
+      <h1>Hi, I’m Benjo!</h1>
+      <h3>Project Manager • Designer • Photographer</h3>
+
+      <p>
+        A BSIS student with a strong combination of project management,
+        design, and photography skills. I manage academic and system projects,
+        create creative and visually appealing designs, and capture meaningful
+        photographs. My work focuses on delivering organized, effective, and
+        high-quality outputs for both academic and personal projects.
+      </p>
+
+      <div class="buttons">
+        <a href="#work">View My Work</a>
+        <a href="#contact">Contact Me</a>
+      </div>
+    </div>
+
+    <div class="profile-card">
+      <img src="Asset/Profile.png" alt="Benjo Solis">
+      <h2>Benjo Solis</h2>
+
+      <div class="tags">
+        <span>Figma</span>
+        <span>Canva</span>
+        <span>Photography</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+  <h2 class="section-title">My Work</h2>
+
+  <div class="work-categories">
+  <button class="filter-btn active" data-filter="all">ALL</button>
+  <button class="filter-btn" data-filter="project">PROJECT MANAGEMENT</button>
+  <button class="filter-btn" data-filter="logo">LOGO</button>
+  <button class="filter-btn" data-filter="poster">POSTER</button>
+  <button class="filter-btn" data-filter="brochure">BROCHURE</button>
+  <button class="filter-btn" data-filter="photography">PHOTOGRAPHY</button>
+</div>
+
+ <div class="work-grid">
+
+  <div class="work-card project" onclick="openModal('projectModal')">
+    <img src="Asset/Sundayag.jpg" alt="Project Management">
+    <h3>STARTUP SUNDAYAG 2025</h3>
+  </div>
+
+  <div class="work-card logo" onclick="openModal('logoModal')">
+    <img src="Asset/Logo.png" alt="Logo Design">
+    <h3>TapBeauty Brand Logo</h3>
+  </div>
+
+  <div class="work-card poster" onclick="openModal('posterModal')">
+    <img src="Asset/Poster.png" alt="Poster Design">
+    <h3>TapBeauty Promotional Poster</h3>
+  </div>
+
+  <div class="work-card brochure" onclick="openModal('brochureModal')">
+    <img src="Asset/Brochure.png" alt="Brochure Design">
+    <h3>TapBeauty Marketing Brochure</h3>
+  </div>
+
+  <div class="work-card photography" onclick="openModal('photoModal')">
+    <img src="Asset/Profile.png" alt="Photography">
+    <h3>Professional Portrait Photography</h3>
+  </div>
+
+</div>
+</section>
+
+  <section class="about" id="about">
+    <h2 class="section-title">About Me</h2>
+
+    <div class="about-text">
+      I'm a BSIS student passionate about project management, graphic design,
+      and photography. I specialize in creating visual content such as logos,
+      brochures, edited photos, and videos while applying effective planning
+      and organization to every project. My goal is to combine creativity and
+      technical skills to produce meaningful, professional, and visually
+      engaging outputs for both academic and personal endeavors.
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-box">
+        <h3>Project Management</h3>
+        <ul>
+          <li>Project Planning and Coordination</li>
+          <li>Requirements Gathering</li>
+          <li>Documentation Management</li>
+          <li>Team Collaboration</li>
+          <li>Project Monitoring and Tracking</li>
+          <li>Business Process Analysis</li>
+        </ul>
+      </div>
+
+      <div class="skill-box">
+        <h3>Graphic Design & Printables</h3>
+        <ul>
+          <li>Logo Design</li>
+          <li>Brochure Design</li>
+          <li>Poster Design</li>
+          <li>Infographic Design</li>
+          <li>Social Media Graphics</li>
+          <li>Layout Design</li>
+          <li>Branding and Visual Identity</li>
+          <li>Canva Design</li>
+        </ul>
+      </div>
+
+      <div class="skill-box">
+        <h3>Photography</h3>
+        <ul>
+          <li>Photography</li>
+          <li>Portrait Photography</li>
+          <li>Event Photography</li>
+          <li>Photo Editing and Retouching</li>
+          <li>Color Correction</li>
+          <li>Visual Composition</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2 class="section-title">Contact</h2>
+
+    <div class="contact-box">
+      <p>09058817998</p>
+      <p>benjosolis14@gmail.com</p>
+      <p>Panabo City, Davao del Norte</p>
+      <p>
+        <a href="https://www.linkedin.com/in/benjo-solis-492822366" target="_blank">
+          LinkedIn Profile
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <div id="projectModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('projectModal')">&times;</span>
+
+    <h2>STARTUP SUNDAYAG 2025</h2>
+
+   <div class="project-gallery">
+      <img src="Asset/Sundayag.jpg" alt="Sundayag Project">
+      <img src="Asset/Sundayag1.jpg" alt="TapBeauty Poster">
+      <img src="Asset/Sundayag2.jpg" alt="TapBeauty Brochure">
+      <img src="Asset/Sundayag3.jpg" alt="TapBeauty Logo">
+    </div>
+
+    <p class="modal-description">
+      This project highlights my project management in Startup Sundayag 2025 Tapbeauty project experience in planning,
+      organizing, presenting, and documenting the startup project.
+      It includes coordination, promotional preparation, branding materials,
+      and project presentation outputs.
+    </p>
+  </div>
+</div>
+
+<div id="logoModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('logoModal')">&times;</span>
+
+        <h2>TapBeauty Brand Logo</h2>
+
+        <div class="logo-gallery">
+            <img src="Asset/Logo.png" alt="TapBeauty Logo">
+        </div>
+
+        <p class="modal-description">
+            The TapBeauty logo was designed to represent elegance, balance,
+            and accessibility in the beauty industry. The two-profile concept
+            symbolizes the connection between beauty service providers and
+            customers, while the color palette reinforces professionalism,
+            trust, and brand recognition.
+        </p>
+    </div>
+</div>
+
+<div id="posterModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('posterModal')">&times;</span>
+    <h2>TapBeauty Promotional Poster</h2>
+
+    <div class="modal-gallery">
+      <img src="Asset/Poster.png" alt="TapBeauty Poster">
+    </div>
+
+    <p class="modal-description">
+      A promotional poster designed to present the concept, features, and
+      visual identity of the TapBeauty application.
+    </p>
+  </div>
+</div>
+
+<div id="brochureModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('brochureModal')">&times;</span>
+
+    <h2>TapBeauty Marketing Brochure</h2>
+
+    <div class="modal-gallery">
+      <img src="Asset/Brochure.png" alt="TapBeauty Brochure">
+    </div>
+
+    <p class="modal-description">
+      A marketing brochure developed to communicate the mission,
+      features, and branding of the TapBeauty project. The brochure
+      provides an informative overview of the application and its
+      benefits for potential users.
+    </p>
+
+  </div>
+</div>
+
+<div id="photoModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('photoModal')">&times;</span>
+
+    <h2>Professional Portrait Photography</h2>
+
+    <div class="modal-gallery">
+      <img src="Asset/Profile.png" alt="Professional Portrait">
+    </div>
+
+    <p class="modal-description">
+      A portrait photography project focused on composition, lighting,
+      presentation, and image quality. The photograph demonstrates
+      attention to detail and professional visual aesthetics.
+    </p>
+
+  </div>
+</div>
+
+  <footer>
+   <p>Designed & Developed by Benjo Solis</p>
+  </footer>
+
+<script>
+  const filterButtons = document.querySelectorAll(".filter-btn");
+  const workCards = document.querySelectorAll(".work-card");
+
+  filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      filterButtons.forEach(btn => btn.classList.remove("active"));
+      button.classList.add("active");
+
+      const filter = button.getAttribute("data-filter");
+
+      workCards.forEach(card => {
+        if (filter === "all" || card.classList.contains(filter)) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
+  });
+  function openModal(id) {
+  document.getElementById(id).style.display = "block";
+}
+
+function closeModal(id) {
+  document.getElementById(id).style.display = "none";
+}
+
+window.addEventListener("click", function(event) {
+  const modals = document.querySelectorAll(".modal");
+
+  modals.forEach(modal => {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+});
+</script>
+  
+</body>
+</html>
